@@ -4,6 +4,7 @@ import com.eci.iagen.schedule_compliance.dto.ScheduleComplianceRequest;
 import com.eci.iagen.schedule_compliance.dto.ScheduleComplianceResponse;
 import com.eci.iagen.schedule_compliance.service.ScheduleComplianceService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import jakarta.validation.Valid;
 public class ScheduleComplianceController {
 
     private final ScheduleComplianceService scheduleComplianceService;
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ScheduleComplianceController.class);
 
     /**
      * Evalúa el cumplimiento de horarios para una entrega
@@ -25,10 +27,11 @@ public class ScheduleComplianceController {
     @PostMapping("/evaluate")
     public ResponseEntity<ScheduleComplianceResponse> evaluateCompliance(
             @Valid @RequestBody ScheduleComplianceRequest request) {
-
+        
+        logger.info("Evaluating schedule compliance for request: {}", request);
         ScheduleComplianceResponse response = scheduleComplianceService
                 .evaluateScheduleCompliance(request);
-
+        logger.info("Compliance evaluation result: {}", response);
         return ResponseEntity.ok(response);
     }
 

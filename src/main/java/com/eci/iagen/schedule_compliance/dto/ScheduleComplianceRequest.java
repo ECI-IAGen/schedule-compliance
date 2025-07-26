@@ -24,4 +24,13 @@ public class ScheduleComplianceRequest {
         private String message;
         private LocalDateTime date;
     }
+
+    public String toString() {
+        return "ScheduleComplianceRequest{" +
+                "repositoryUrl='" + repositoryUrl + '\'' +
+                ", dueDate=" + dueDate +
+                ", submissionDate=" + submissionDate +
+                ", commits=" + commits +
+                '}';
+    }
 }

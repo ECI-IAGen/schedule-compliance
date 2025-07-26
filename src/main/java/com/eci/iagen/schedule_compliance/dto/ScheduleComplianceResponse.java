@@ -21,4 +21,19 @@ public class ScheduleComplianceResponse {
     private String evaluationCriteria;
     private LocalDateTime evaluationDate;
     private List<Map<String, Object>> commitDetails;
+
+    @Override
+    public String toString() {
+        return "ScheduleComplianceResponse{" +
+                "penalizedScore=" + penalizedScore +
+                ", originalScore=" + originalScore +
+                ", lateDays=" + lateDays +
+                ", penaltyApplied=" + penaltyApplied +
+                ", isLate=" + isLate +
+                ", evaluationCriteria='" + evaluationCriteria + '\'' +
+                ", evaluationDate=" + evaluationDate +
+                ", commitDetails=" + commitDetails +
+                '}';
+    }
+
 }
