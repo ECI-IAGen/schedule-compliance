@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.DotenvException;
 
 @SpringBootApplication
 public class ScheduleComplianceApplication {
@@ -21,8 +22,8 @@ public class ScheduleComplianceApplication {
 				logger.info("Setting system property: {}={}", key, entry.getValue());
 				System.setProperty(key, entry.getValue());
 			});
-		} catch (Exception e) {
-			// Continue without .env file
+		} catch (DotenvException e) {
+			logger.error("Error loading .env file", e);
 		}
 		SpringApplication.run(ScheduleComplianceApplication.class, args);
 	}
